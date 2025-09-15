@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-// Higher-Order Component: logs props + injects theme if missing
+
 function withLogger(WrappedComponent) {
   return function WithLogger(props) {
     useEffect(() => {
