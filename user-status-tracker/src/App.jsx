@@ -16,15 +16,13 @@ export default function App() {
       <h1>User Status Tracker</h1>
       <p>Class Components, Lifecycle, HOCs & Hooks Demo</p>
 
-      {/* Theme Toggle Button */}
+   
       <button className="theme-btn" onClick={toggleTheme}>
         Switch to {theme === "light" ? "Dark" : "Light"} Theme
       </button>
 
-      {/* Class Component + HOC */}
+    
       <UserStatus theme={theme} />
-
-      {/* Hooks demo */}
       <HookDemo />
 
       <footer>
