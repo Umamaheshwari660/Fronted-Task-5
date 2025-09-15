@@ -1,52 +1,39 @@
 import React, { Component } from "react";
 import withLogger from "./withLogger";
 
-// Mock API
-function mockFetchUserStatus(userId = 1) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ userId, status: "Online" });
-    }, 900);
-  });
-}
-
 class UserStatus extends Component {
   constructor(props) {
     super(props);
-    this.state = { status: "Unknown", loading: true };
-    console.log("[Constructor] UserStatus constructor");
+    this.state = { status: "Offline" };
   }
 
-  componentDidMount() {
-    console.log("[Mounted] UserStatus class component loaded");
-
-    mockFetchUserStatus(this.props.userId)
-      .then((data) => {
-        this.setState({ status: data.status, loading: false });
-        console.log(`[Fetched] Status: ${data.status}`);
-      })
-      .catch(() => {
-        this.setState({ status: "Error", loading: false });
-      });
-  }
+  toggleStatus = () => {
+    this.setState((prev) => ({
+      status: prev.status === "Online" ? "Offline" : "Online"
+    }));
+  };
 
   render() {
     const { theme } = this.props;
-    const { status, loading } = this.state;
+    const { status } = this.state;
 
     return (
       <div className="user-status-card">
         <h2>User Status (Class)</h2>
         <small>Theme: {theme}</small>
         <div style={{ marginTop: 8 }}>
-          <strong>Status:</strong> {loading ? "Loading..." : status}
+          <strong>Status:</strong> {status}
         </div>
+        <button className="status-btn" onClick={this.toggleStatus}>
+          Go {status === "Online" ? "Offline" : "Online"}
+        </button>
       </div>
     );
   }
 }
 
 export default withLogger(UserStatus);
+
 
 
 

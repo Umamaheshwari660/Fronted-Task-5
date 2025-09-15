@@ -1,18 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 function HookDemo() {
   const [value, setValue] = useState("Hello");
   const inputRef = useRef(null);
 
-  console.log("[Hook Demo] useState value:", value);
-
   useEffect(() => {
-    console.log("[Hook Demo] useEffect called after render");
-    return () => console.log("[Hook Demo] cleanup when HookDemo unmounts");
-  }, []);
-
-  useEffect(() => {
-    console.log("[Hook Demo] useRef points to input element", inputRef.current);
+    console.log("[Hook Demo] Mounted");
   }, []);
 
   return (
@@ -37,6 +30,7 @@ function HookDemo() {
 }
 
 export default HookDemo;
+
 
 
 
